@@ -5,7 +5,6 @@ using DMSAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using LearningAPI.DBContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using Wm.Models;
+using TMS_API.DBContext;
+using TMS_API.Models;
 using static AuthApplication.Services.AuthService;
 
 

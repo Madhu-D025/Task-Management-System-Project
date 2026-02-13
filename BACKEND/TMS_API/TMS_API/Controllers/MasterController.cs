@@ -1,8 +1,8 @@
 ﻿using DMSAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using LearningAPI.DBContext;
-using Wm.Models;
+using TMS_API.DBContext;
+using TMS_API.Models;
 
 namespace SOW.Controllers
 {

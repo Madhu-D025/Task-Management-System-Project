@@ -1,9 +1,8 @@
 ﻿using AuthApplication.Models;
-using LearningAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using Wm.Models;
+using TMS_API.Models;
 
-namespace LearningAPI.DBContext
+namespace TMS_API.DBContext
 {
     public class AppDbContext : DbContext
     {
@@ -27,6 +26,8 @@ namespace LearningAPI.DBContext
         public DbSet<DocumentExtensions> DocumentExtensions { get; set; }
         // 08-01-2026
         public DbSet<UserActivityLog> UserActivityLog { get; set; }
+        public DbSet<Project> Project { get; set; }
+        public DbSet<ProjectEmployees> ProjectEmployees { get; set; }
 
 
 

@@ -16,7 +16,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading.Tasks;
-using LearningAPI.DBContext;
+using TMS_API.DBContext;
 using static AuthApplication.Services.AuthService;
 
 namespace AuthApplication.Controllers

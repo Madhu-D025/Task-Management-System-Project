@@ -1,8 +1,8 @@
 ﻿using AuthApplication.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
+using TMS_API.DBContext;
 using static System.Net.WebRequestMethods;
-using LearningAPI.DBContext;
 
 namespace AuthApplication.Services
 {

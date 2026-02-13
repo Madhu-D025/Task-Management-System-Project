@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LearningAPI.Models
+namespace TMS_API.Models
 {
     public class Activity
     {

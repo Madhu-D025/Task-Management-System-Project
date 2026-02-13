@@ -1,6 +1,5 @@
 using AuthApplication.Controllers;
 using AuthApplication.Services;
-using LearningAPI.DBContext;
 //using LearningAPI.DBContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
@@ -8,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using TMS_API.DBContext;
 using WM.Services;
 
 

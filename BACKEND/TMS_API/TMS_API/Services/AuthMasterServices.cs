@@ -1,7 +1,5 @@
 ﻿using AuthApplication.Models;
 using DMSAPI.Services;
-using LearningAPI.DBContext;
-using LearningAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.JsonPatch.Internal;
@@ -17,7 +15,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
-using Wm.Models;
+using TMS_API.DBContext;
+using TMS_API.Models;
 using static AuthApplication.Services.AuthService;
 
 namespace AuthApplication.Services

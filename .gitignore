@@ -1,0 +1,27 @@
+# Ignore Visual Studio temporary files, build results, and
+# user-specific files
+.vs/
+/Documents/
+/ProfileAttachments/
+/Logs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+bin/
+obj/
+out/
+
+
+# Ignore NuGet package folders
+*.nupkg
+packages/
+project.lock.json
+
+# Others
+*.log
+*.tmp
+*.cache
+*.txt

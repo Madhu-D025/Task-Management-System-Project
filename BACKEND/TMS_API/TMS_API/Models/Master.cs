@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Contracts;
 
-namespace Wm.Models
+namespace TMS_API.Models
 {
     public class Master
     {

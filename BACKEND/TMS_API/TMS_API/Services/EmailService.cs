@@ -1,5 +1,4 @@
-﻿using LearningAPI.DBContext;
-using AuthApplication.Models;
+﻿using AuthApplication.Models;
 //using AuthApplication.DbContexts;
 //using AuthApplication.Helpers;
 using AuthApplication.Models;
@@ -20,9 +19,10 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Web;
+using TMS_API.DBContext;
+
 //using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using static System.Net.WebRequestMethods;
-using LearningAPI.DBContext;
 
 namespace AuthApplication.Services
 {

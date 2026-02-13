@@ -4,7 +4,7 @@ using AuthApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Net;
-using LearningAPI.DBContext;
+using TMS_API.DBContext;
 
 
 namespace WM.Services
