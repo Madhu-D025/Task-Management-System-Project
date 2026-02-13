@@ -1014,7 +1014,7 @@ namespace AuthApplication.Services
                 AddChange("User Name", oldUser.UserName, newUser.UserName);
                 AddChange("Contact Number", oldUser.PhoneNumber, newUser.PhoneNumber);
                 AddChange("Client ID", oldUser.ClientId, newUser.ClientId);
-                AddChange("Address", oldUser.InstituteOrBranch, newUser.InstituteOrBranch);
+                AddChange("Address", oldUser.LocationOrBranch, newUser.LocationOrBranch);
                 AddChange("Date of Birth", oldUser.RoleName, newUser.RoleName);
                 //AddChange("Role Name", oldUser.RoleID, newUser.RoleID);
 

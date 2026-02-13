@@ -17,7 +17,9 @@ namespace AuthApplication.Models
         public string? FullName { get; set; }
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? InstituteOrBranch { get; set; }
+        public string? LocationOrBranch { get; set; }
+        public string? Department { get; set; }
+        public string? EmploymentType { get; set; }
         public string? Status { get; set; }
         public bool? EmailStatus { get; set; }
         public string? Password { get; set; }
@@ -115,7 +117,9 @@ namespace AuthApplication.Models
         public string? Email { get; set; }
         public string? Password { get; set; }
         public string? PhoneNumber { get; set; }
-        public string? InstituteOrBranch { get; set; }
+        public string? LocationOrBranch { get; set; }
+        public string? Department { get; set; }
+        public string? EmploymentType { get; set; }
         public string? joiningDate { get; set; }
         public string? Status { get; set; }
         public bool? EmailStatus { get; set; }

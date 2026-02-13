@@ -181,7 +181,9 @@ namespace AuthApplication.Services
                                   tb1.RoleID,
                                   tb2.RoleName,
                                   tb.ClientId,
-                                  tb.InstituteOrBranch,
+                                  tb.LocationOrBranch,
+                                  tb.Department,
+                                  tb.EmploymentType,
                                   tb.Status,
                                   tb.EmailStatus,
                                   tb.joiningDate,
@@ -206,7 +208,9 @@ namespace AuthApplication.Services
                     RoleID = record.RoleID,
                     ClientId = record.ClientId,
                     Status = record.Status,
-                    InstituteOrBranch = record.InstituteOrBranch,
+                    LocationOrBranch = record.LocationOrBranch,
+                    Department = record.Department,
+                    EmploymentType = record.EmploymentType,
                     EmailStatus = record.EmailStatus,
                     ProfilePath = record.PicDbPath,
 
@@ -249,7 +253,9 @@ namespace AuthApplication.Services
                                   tb1.RoleID,
                                   tb1.RoleName,
                                   tb.ClientId,
-                                  tb.InstituteOrBranch,
+                                  tb.LocationOrBranch,
+                                  tb.Department,
+                                  tb.EmploymentType,
                                   tb.Status,
                                   tb.EmailStatus,
                                   tb.joiningDate,
@@ -277,7 +283,9 @@ namespace AuthApplication.Services
                     Email = record.Email,
                     FullName = record.FullName,
                     PhoneNumber = record.PhoneNumber,
-                    InstituteOrBranch = record.InstituteOrBranch,
+                    LocationOrBranch = record.LocationOrBranch,
+                    Department = record.Department,
+                    EmploymentType = record.EmploymentType,
                     Password = Decrypt(record.Password, true),
                     IsActive = record.IsActive,
                     RoleName = record.RoleName,
@@ -387,7 +395,9 @@ namespace AuthApplication.Services
                     Attempts = 0,
                     ProfilePath = filePath,
                     PicDbPath = dbFilePath,
-                    InstituteOrBranch = userWithRole.InstituteOrBranch,
+                    LocationOrBranch = userWithRole.LocationOrBranch,
+                    Department = userWithRole.Department,
+                    EmploymentType = userWithRole.EmploymentType,
                     joiningDate = userWithRole.joiningDate,
                     Status = userWithRole.Status,
                     EmailStatus = userWithRole.EmailStatus,
@@ -626,7 +636,9 @@ namespace AuthApplication.Services
                     UserName = user.UserName,
                     Email = user.Email,
                     PhoneNumber = user.PhoneNumber,
-                    InstituteOrBranch = user.InstituteOrBranch,
+                    LocationOrBranch = user.LocationOrBranch,
+                    Department = user.Department,
+                    EmploymentType = user.EmploymentType,
                     ClientId = user.ClientId,
                     FullName = user.FullName,
                     IsActive = user.IsActive,
@@ -677,8 +689,12 @@ namespace AuthApplication.Services
                     user.UserName = userWithRole.UserName;
                 if (!string.IsNullOrEmpty(userWithRole.Password))
                     user.Password = Encrypt(userWithRole.Password.Replace(" ", ""), true);
-                if (!string.IsNullOrEmpty(userWithRole.InstituteOrBranch))
-                    user.InstituteOrBranch = userWithRole.InstituteOrBranch;
+                if (!string.IsNullOrEmpty(userWithRole.LocationOrBranch))
+                    user.LocationOrBranch = userWithRole.LocationOrBranch;
+                if (!string.IsNullOrEmpty(userWithRole.Department))
+                    user.Department = userWithRole.Department;
+                if (!string.IsNullOrEmpty(userWithRole.EmploymentType))
+                    user.EmploymentType = userWithRole.EmploymentType;
                 if (!string.IsNullOrEmpty(userWithRole.ClientId))
                     user.ClientId = userWithRole.ClientId;
                 if (!string.IsNullOrEmpty(userWithRole.joiningDate))
@@ -792,7 +808,9 @@ namespace AuthApplication.Services
                     Email = user.Email,
                     PhoneNumber = user.PhoneNumber,
                     FullName = user.FullName,
-                    InstituteOrBranch = user.InstituteOrBranch,
+                    LocationOrBranch = user.LocationOrBranch,
+                    Department = user.Department,
+                    EmploymentType = user.EmploymentType,
                     ClientId = user.ClientId,
                     RoleID = userWithRole.RoleID,
                     IsActive = user.IsActive,

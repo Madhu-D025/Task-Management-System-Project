@@ -143,7 +143,17 @@
         "IsRequired": false
       },
       {
-        "Name": "InstituteOrBranch",
+        "Name": "LocationOrBranch",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Department",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmploymentType",
         "Type": "System.String",
         "IsRequired": false
       },
@@ -564,7 +574,17 @@
         "IsRequired": false
       },
       {
-        "Name": "InstituteOrBranch",
+        "Name": "LocationOrBranch",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Department",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmploymentType",
         "Type": "System.String",
         "IsRequired": false
       },

@@ -2,6 +2,7 @@
 # user-specific files
 .vs/
 /Documents/
+/ProfileAttachments/
 /Logs/
 *.user
 *.suo

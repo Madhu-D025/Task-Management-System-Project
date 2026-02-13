@@ -164,7 +164,21 @@
             }
           },
           {
-            "name": "InstituteOrBranch",
+            "name": "LocationOrBranch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Department",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EmploymentType",
             "in": "query",
             "schema": {
               "type": "string"
@@ -387,7 +401,21 @@
             }
           },
           {
-            "name": "InstituteOrBranch",
+            "name": "LocationOrBranch",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Department",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "EmploymentType",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1488,7 +1516,15 @@
             "type": "string",
             "nullable": true
           },
-          "instituteOrBranch": {
+          "locationOrBranch": {
+            "type": "string",
+            "nullable": true
+          },
+          "department": {
+            "type": "string",
+            "nullable": true
+          },
+          "employmentType": {
             "type": "string",
             "nullable": true
           },
