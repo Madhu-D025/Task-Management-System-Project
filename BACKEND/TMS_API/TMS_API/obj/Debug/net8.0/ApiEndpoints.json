@@ -1,0 +1,780 @@
+[
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthController",
+    "Method": "GetToken",
+    "RelativePath": "api/AuthController/token",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginModel",
+        "Type": "AuthApplication.Models.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/AuthMasterController/ChangePassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserID",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CurrentPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "NewPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "CreateApp",
+    "RelativePath": "api/AuthMasterController/CreateApp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "app",
+        "Type": "AuthApplication.Models.App",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "CreateMasterData",
+    "RelativePath": "api/AuthMasterController/CreateMasterData",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "Wm.Models.MasterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "CreateRole",
+    "RelativePath": "api/AuthMasterController/CreateRole",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleWithApp",
+        "Type": "AuthApplication.Models.RoleWithApp",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "CreateUser",
+    "RelativePath": "api/AuthMasterController/CreateUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserID",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoleID",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoleName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InstituteOrBranch",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "joiningDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Status",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmailStatus",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ClientId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsActive",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "CreatedOn",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "CreatedBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ModifiedOn",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ModifiedBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProfilePath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PicDbPath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProfilePic",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "DeleteApp",
+    "RelativePath": "api/AuthMasterController/DeleteApp",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "app",
+        "Type": "AuthApplication.Models.App",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "DeleteRole",
+    "RelativePath": "api/AuthMasterController/DeleteRole",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/AuthMasterController/DeleteUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClientId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserID",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AuthApplication.Models.UserWithRole",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "FindClient",
+    "RelativePath": "api/AuthMasterController/FindClient",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "ForgotPassword",
+    "RelativePath": "api/AuthMasterController/ForgotPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "forgotPassword",
+        "Type": "AuthApplication.Models.ForgotPassword",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "GetAllApps",
+    "RelativePath": "api/AuthMasterController/GetAllApps",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "GetAllMasterData",
+    "RelativePath": "api/AuthMasterController/GetAllMasterData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "GetAllRoles",
+    "RelativePath": "api/AuthMasterController/GetAllRoles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClientId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "GetAllRolesWithApp",
+    "RelativePath": "api/AuthMasterController/GetAllRolesWithApp",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClientId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "GetAllUsers",
+    "RelativePath": "api/AuthMasterController/GetAllUsers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ClientId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "GetAllUsersLoginHistory",
+    "RelativePath": "api/AuthMasterController/GetAllUsersLoginHistory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "GetCurrentUserLoginHistory",
+    "RelativePath": "api/AuthMasterController/GetCurrentUserLoginHistory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "GetUsersById",
+    "RelativePath": "api/AuthMasterController/GetUsersById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "ProfileUpdateUser",
+    "RelativePath": "api/AuthMasterController/ProfileUpdateUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserID",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ModifiedBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProfilePic",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "SendResetLinkToMail",
+    "RelativePath": "api/AuthMasterController/SendResetLinkToMail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emailModel",
+        "Type": "AuthApplication.Models.EmailModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AuthApplication.Models.AuthTokenHistory",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "SignOut",
+    "RelativePath": "api/AuthMasterController/SignOut",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "UpdateApp",
+    "RelativePath": "api/AuthMasterController/UpdateApp",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "app",
+        "Type": "AuthApplication.Models.App",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "UpdateRole",
+    "RelativePath": "api/AuthMasterController/UpdateRole",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleWithApp",
+        "Type": "AuthApplication.Models.RoleWithApp",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/AuthMasterController/UpdateUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserID",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoleID",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "RoleName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "FullName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "InstituteOrBranch",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "joiningDate",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Status",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmailStatus",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ClientId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "IsActive",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "CreatedOn",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "CreatedBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ModifiedOn",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "ModifiedBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProfilePath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PicDbPath",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProfilePic",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "AuthApplication.Models.UserWithRole",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AuthApplication.Controllers.AuthMasterController",
+    "Method": "UpdateUserStatus",
+    "RelativePath": "api/AuthMasterController/UpdateUserStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "isActive",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "modifiedBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "department",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SOW.Controllers.MasterController",
+    "Method": "CreateMaster",
+    "RelativePath": "api/MasterController/CreateMaster",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "masterDto",
+        "Type": "Wm.Models.MasterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SOW.Controllers.MasterController",
+    "Method": "DeleteMasterById",
+    "RelativePath": "api/MasterController/DeleteMasterById",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SOW.Controllers.MasterController",
+    "Method": "GetAllMasterNames",
+    "RelativePath": "api/MasterController/GetAllMasterNames",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SOW.Controllers.MasterController",
+    "Method": "GetAllMasters",
+    "RelativePath": "api/MasterController/GetAllMasters",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SOW.Controllers.MasterController",
+    "Method": "GetMasterById",
+    "RelativePath": "api/MasterController/GetMasterById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SOW.Controllers.MasterController",
+    "Method": "GetMasterDetailsByName",
+    "RelativePath": "api/MasterController/GetMasterDetailsByName",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "MasterName",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SOW.Controllers.MasterController",
+    "Method": "UpdateMaster",
+    "RelativePath": "api/MasterController/UpdateMaster",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "masterDto",
+        "Type": "Wm.Models.MasterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
