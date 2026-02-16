@@ -14,6 +14,7 @@ namespace TMS_API.Models
         public string? ManagerName { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsCompleted { get; set; }
+        public bool? IsCancelled { get; set; }
         public string? Status { get; set; }
         public DateTime? CreatedOn { get; set; }
         public string? CreatedBy { get; set; }
@@ -34,6 +35,7 @@ namespace TMS_API.Models
         public string? ManagerName { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsCompleted { get; set; }
+        public bool? IsCancelled { get; set; }
         public string? Status { get; set; }
         
     }
