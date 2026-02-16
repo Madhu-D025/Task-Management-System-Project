@@ -72,7 +72,7 @@
     "Parameters": [
       {
         "Name": "data",
-        "Type": "TMS_API.Models.MasterDto",
+        "Type": "Wm.Models.MasterDto",
         "IsRequired": true
       }
     ],
@@ -693,22 +693,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "TMS_API.Controllers.ManagerController",
-    "Method": "GetManagerDashboardDetailsByUserId",
-    "RelativePath": "api/Manager/GetManagerDashboardDetailsByUserId",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "SOW.Controllers.MasterController",
     "Method": "CreateMaster",
     "RelativePath": "api/MasterController/CreateMaster",
@@ -718,7 +702,7 @@
     "Parameters": [
       {
         "Name": "masterDto",
-        "Type": "TMS_API.Models.MasterDto",
+        "Type": "Wm.Models.MasterDto",
         "IsRequired": true
       }
     ],
@@ -807,7 +791,7 @@
     "Parameters": [
       {
         "Name": "masterDto",
-        "Type": "TMS_API.Models.MasterDto",
+        "Type": "Wm.Models.MasterDto",
         "IsRequired": true
       }
     ],

@@ -1094,27 +1094,6 @@
         }
       }
     },
-    "/api/Manager/GetManagerDashboardDetailsByUserId": {
-      "get": {
-        "tags": [
-          "Manager"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/MasterController/CreateMaster": {
       "post": {
         "tags": [

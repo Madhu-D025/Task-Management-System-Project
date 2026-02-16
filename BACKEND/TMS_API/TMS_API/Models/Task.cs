@@ -37,4 +37,38 @@ namespace TMS_API.Models
         public bool? IsActive { get; set; }
         public string? Status { get; set; }
     }
+
+
+
+
+
+    public class TaskRelatedInfo
+    {
+        [Key]
+        public int Id { get; set; }
+        public int? TaskId { get; set; }
+        public int? ProjectId { get; set; }
+        public string? Comments { get; set; }
+        public bool? IsCompleted { get; set; }
+        public bool? IsActive { get; set; }
+        public DateTime? CreatedOn { get; set; }
+        public string? CreatedBy { get; set; }
+        public DateTime? ModifiedOn { get; set; }
+        public string? ModifiedBy { get; set; }
+    }
+
+
+    public class TaskRelatedInfoDto
+    {
+        [Key]
+        public int Id { get; set; }
+        public int? TaskId { get; set; }
+        public string? UserId { get; set; }
+        public int? ProjectId { get; set; }
+        public string? Comments { get; set; }
+        public bool? IsCompleted { get; set; }
+        public bool? IsActive { get; set; }
+        public List<IFormFile>? Documents { get; set; }
+    }
+
 }

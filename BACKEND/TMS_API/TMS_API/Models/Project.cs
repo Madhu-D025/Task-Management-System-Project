@@ -21,7 +21,6 @@ namespace TMS_API.Models
         public DateTime? ModifiedOn { get; set; }
         public string? ModifiedBy { get; set; }
     }
-
     public class ProjectDto
     {
         [Key]
@@ -33,13 +32,14 @@ namespace TMS_API.Models
         public DateTime? EndDate { get; set; }
         public string? ManagerId { get; set; }
         public string? ManagerName { get; set; }
-        public bool? IsActive { get; set; }
-        public bool? IsCompleted { get; set; }
-        public bool? IsCancelled { get; set; }
+        public bool? IsActive { get; set; } = true;
+        public bool? IsCompleted { get; set; } = false;
+        public bool? IsCancelled { get; set; } = false;
         public string? Status { get; set; }
-        
-    }
+        public List<ProjectEmployeesDto> ProjectEmployeesDto { get; set; }
 
+
+    }
     public class ProjectEmployees
     {
         [Key]
@@ -52,7 +52,6 @@ namespace TMS_API.Models
         public DateTime? ModifiedOn { get; set; }
         public string? ModifiedBy { get; set; }
     }
-
     public class ProjectEmployeesDto
     {
         [Key]
@@ -61,6 +60,16 @@ namespace TMS_API.Models
         public int? ProjectId { get; set; }
         public string? EmployeeId { get; set; }
         public bool? IsActive { get; set; }
+
+    }
+
+    public class ProjectUpdateStatusDto
+    {
+        public int ProjectId { get; set; }
+        public string? UserId { get; set; }
+        public string? Status { get; set; }
+        public bool? IsCompleted { get; set; }
+        public bool? IsCancelled { get; set; }
 
     }
 
