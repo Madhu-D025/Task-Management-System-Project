@@ -25,8 +25,755 @@ namespace TMS_API.Controllers
         }
 
 
+        #region Task Creation Related API's
+
+        [HttpGet("GetAllTasks")]
+        public async Task<IActionResult> GetAllTasks()
+        {
+            try
+            {
+                var TaskDetails = await (from t in _dbContext.Tasks
+                                         where t.IsActive == true
+                                         orderby t.CreatedOn descending
+                                         select new
+                                         {
+                                             t.Id,
+                                             t.ProjectId,
+                                             t.ProjectName,
+                                             t.ManagerNames,
+                                             t.EmployeeUserId,
+                                             t.TaskName,
+                                             t.TaskDesc,
+                                             t.TaskStartDate,
+                                             t.TaskEndDate,
+                                             t.IsActive,
+                                             t.ManagerCompleteStatus,
+                                             t.Status,
+                                             t.CreatedOn,
+                                             t.CreatedBy,
+                                             t.ModifiedOn,
+                                             t.ModifiedBy,
+                                             Documents = (from doc in _dbContext.DocumentMaster
+                                                          where  doc.DocumentId == t.Id.ToString() && doc.DocumentType == "TaskDocuments"
+                                                          select new
+                                                          {
+                                                              doc.Id,
+                                                              doc.DocumentId,
+                                                              doc.DocumentType,
+                                                              doc.DocumentPath,
+                                                              doc.DocumentURL,
+                                                              doc.CreatedBy,
+                                                              doc.CreatedOn
+                                                          })
+                                         }).ToListAsync();
+
+                if (TaskDetails == null || TaskDetails.Count == 0)
+                {
+                    return Ok(new { success = false, message = "No active tasks found.", data = TaskDetails });
+                }
+
+                return Ok(new { success = true, message = "Tasks retrieved successfully.", data = TaskDetails });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { success = false, message = $"An error occurred while retrieving tasks: {ex.Message}" });
+            }
+        }
+
+        [HttpGet("GetTaskById")]
+        public async Task<IActionResult> GetTaskById(int id)
+        {
+            try
+            {
+                if (id <= 0)
+                {
+                    return Ok(new { success = false, message = "Task Id is required." });
+                }
+
+                var TaskDetails = await (from t in _dbContext.Tasks
+                                         where t.Id == id && t.IsActive == true
+                                         select new
+                                         {
+                                             t.Id,
+                                             t.ProjectId,
+                                             t.ProjectName,
+                                             t.ManagerNames,
+                                             t.EmployeeUserId,
+                                             t.TaskName,
+                                             t.TaskDesc,
+                                             t.TaskStartDate,
+                                             t.TaskEndDate,
+                                             t.IsActive,
+                                             t.ManagerCompleteStatus,
+                                             t.Status,
+                                             t.CreatedOn,
+                                             t.CreatedBy,
+                                             t.ModifiedOn,
+                                             t.ModifiedBy,
+                                             Documents = (from doc in _dbContext.DocumentMaster
+                                                          where doc.DocumentId == t.Id.ToString() && doc.DocumentType == "TaskDocuments"
+                                                          select new
+                                                          {
+                                                              doc.Id,
+                                                              doc.DocumentId,
+                                                              doc.DocumentType,
+                                                              doc.DocumentPath,
+                                                              doc.DocumentURL,
+                                                              doc.CreatedBy,
+                                                              doc.CreatedOn
+                                                          })
+                                         }).FirstOrDefaultAsync();
+
+                if (TaskDetails == null)
+                {
+                    return Ok(new { success = false, message = "Task not found.", data = TaskDetails });
+                }
+
+                return Ok(new { success = true, message = "Task retrieved successfully.", data = TaskDetails });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { success = false, message = $"An error occurred while retrieving task: {ex.Message}" });
+            }
+        }
+
+        [HttpGet("GetAllTasksByProjectId")]
+        public async Task<IActionResult> GetAllTasksByProjectId(int projectId)
+        {
+            try
+            {
+                if (projectId <= 0)
+                {
+                    return Ok(new { success = false, message = "Project Id is required." });
+                }
+
+                var TaskDetails = await (from t in _dbContext.Tasks
+                                         where t.ProjectId == projectId && t.IsActive == true
+                                         orderby t.CreatedOn descending
+                                         select new
+                                         {
+                                             t.Id,
+                                             t.ProjectId,
+                                             t.ProjectName,
+                                             t.ManagerNames,
+                                             t.EmployeeUserId,
+                                             t.TaskName,
+                                             t.TaskDesc,
+                                             t.TaskStartDate,
+                                             t.TaskEndDate,
+                                             t.IsActive,
+                                             t.ManagerCompleteStatus,
+                                             t.Status,
+                                             t.CreatedOn,
+                                             t.CreatedBy,
+                                             t.ModifiedOn,
+                                             t.ModifiedBy,
+                                             Documents = (from doc in _dbContext.DocumentMaster
+                                                          where doc.DocumentId == t.Id.ToString() && doc.DocumentType == "TaskDocuments"
+                                                          select new
+                                                          {
+                                                              doc.Id,
+                                                              doc.DocumentId,
+                                                              doc.DocumentType,
+                                                              doc.DocumentPath,
+                                                              doc.DocumentURL,
+                                                              doc.CreatedBy,
+                                                              doc.CreatedOn
+                                                          })
+                                         }).ToListAsync();
+
+                if (TaskDetails == null || TaskDetails.Count == 0)
+                {
+                    return Ok(new { success = false, message = "No tasks found for this project.", data = TaskDetails });
+                }
+
+                return Ok(new { success = true, message = "Tasks retrieved successfully.", data = TaskDetails });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { success = false, message = $"An error occurred while retrieving tasks: {ex.Message}" });
+            }
+        }
+
+        [HttpPost("CreateTask")]
+        public async Task<IActionResult> CreateTask([FromForm] TaskDto data)
+        {
+            var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                // Required field validations
+                if (string.IsNullOrWhiteSpace(data.UserId))
+                {
+                    return Ok(new { success = false, message = "UserId is required." });
+                }
+
+                if (data.ProjectId == null || data.ProjectId <= 0)
+                {
+                    return Ok(new { success = false, message = "ProjectId is required." });
+                }
+
+                if (string.IsNullOrWhiteSpace(data.ProjectName))
+                {
+                    return Ok(new { success = false, message = "ProjectName is required." });
+                }
+
+                if (data.TaskListDto == null || data.TaskListDto.Count == 0)
+                {
+                    return Ok(new { success = false, message = "At least one task must be provided." });
+                }
+
+                // Validate ProjectId exists
+                var projectExists = await _dbContext.Project.FirstOrDefaultAsync(p => p.Id == data.ProjectId);
+                if (projectExists == null)
+                {
+                    return Ok(new { success = false, message = "Project not found. Please provide a valid ProjectId." });
+                }
+
+                // Get Manager Name based on UserId
+                var manager = await _dbContext.Users.FirstOrDefaultAsync(u =>
+                    u.UserID.ToString().ToLower() == data.UserId.ToString().ToLower());
+                var managerName = manager?.FullName ?? "Unknown";
+
+                // Validate each task in the list
+                foreach (var task in data.TaskListDto)
+                {
+                    if (string.IsNullOrWhiteSpace(task.TaskName))
+                    {
+                        return Ok(new { success = false, message = "TaskName is required for all tasks." });
+                    }
+
+                    if (string.IsNullOrWhiteSpace(task.EmployeeUserId))
+                    {
+                        return Ok(new { success = false, message = "EmployeeUserId is required for all tasks." });
+                    }
+
+                    // Validate TaskEndDate >= TaskStartDate
+                    if (task.TaskStartDate != null && task.TaskEndDate != null)
+                    {
+                        if (task.TaskEndDate < task.TaskStartDate)
+                        {
+                            return Ok(new { success = false, message = $"TaskEndDate must be greater than or equal to TaskStartDate for task '{task.TaskName}'." });
+                        }
+                    }
+                }
+
+                // Check for duplicate tasks (same ProjectId, TaskName, and EmployeeUserId)
+                var duplicateTasks = new List<string>();
+                foreach (var task in data.TaskListDto)
+                {
+                    var existingTask = _dbContext.Tasks.FirstOrDefault(t =>
+                        t.ProjectId == data.ProjectId &&
+                        t.TaskName.ToLower().Trim() == task.TaskName.ToLower().Trim() &&
+                        t.EmployeeUserId.ToLower().Trim() == task.EmployeeUserId.ToLower().Trim());
+
+                    if (existingTask != null)
+                    {
+                        duplicateTasks.Add($"Task '{task.TaskName}' for Employee '{task.EmployeeUserId}'");
+                    }
+                }
+
+                if (duplicateTasks.Any())
+                {
+                    return Ok(new
+                    {
+                        success = false,
+                        message = $"Duplicate tasks found: {string.Join(", ", duplicateTasks)}. These tasks already exist for the same project and employees."
+                    });
+                }
+
+                // Create tasks - CHANGED: List<Task> to List<Tasks>
+                var createdTasks = new List<Tasks>();
+                var totalDocumentsUploaded = 0;
+
+                foreach (var taskItem in data.TaskListDto)
+                {
+                    var newTask = new Tasks
+                    {
+                        ProjectId = data.ProjectId,
+                        ProjectName = data.ProjectName,
+                        ManagerNames = managerName,
+                        EmployeeUserId = taskItem.EmployeeUserId,
+                        TaskName = taskItem.TaskName,
+                        TaskDesc = taskItem.TaskDesc,
+                        TaskStartDate = taskItem.TaskStartDate,
+                        TaskEndDate = taskItem.TaskEndDate,
+                        IsActive = true, // Set by default
+                        Status = "In Progress", // Set by default
+                        ManagerCompleteStatus = false, // Set by default
+                        CreatedBy = data.UserId,
+                        CreatedOn = DateTime.Now
+                    };
+
+                    await _dbContext.Tasks.AddAsync(newTask);
+                    await _dbContext.SaveChangesAsync();
+
+                    createdTasks.Add(newTask);
+
+                    // Upload documents if provided
+                    if (taskItem.Documents != null && taskItem.Documents.Any())
+                    {
+                        var documentDto = new Documentdto
+                        {
+                            Documents = taskItem.Documents,
+                            DocumentId = newTask.Id.ToString(),
+                            documentType = "TaskDocuments",
+                            FolderName = "TaskDocuments",
+                            UserID = data.UserId
+                        };
+
+                        await _docservice.DocumentsUpload(documentDto);
+                        totalDocumentsUploaded += taskItem.Documents.Count;
+                    }
+                }
+
+                // Log creation
+                Log.DataLog($"{data.UserId}",
+                    $"{createdTasks.Count} task(s) created for ProjectId {data.ProjectId} ('{data.ProjectName}') by {data.UserId}. {totalDocumentsUploaded} document(s) uploaded.",
+                    "Task");
+
+                // Create UserActivityLog
+                var userActivityLog = new UserActivityLog
+                {
+                    SNType = "Task Creation",
+                    SNTital = "Tasks Created",
+                    SNDescription = $"{createdTasks.Count} task(s) were successfully created for project '{data.ProjectName}' (ProjectId: {data.ProjectId}) by manager '{managerName}'. {totalDocumentsUploaded} document(s) attached.",
+                    SNActionUserId = data.UserId,
+                    CreatedOn = DateTime.Now,
+                    IsActive = true,
+                    IsRead = false
+                };
+
+                _dbContext.UserActivityLog.Add(userActivityLog);
+                await _dbContext.SaveChangesAsync();
+
+                await transaction.CommitAsync();
+
+                return Ok(new
+                {
+                    success = true,
+                    message = $"{createdTasks.Count} task(s) created successfully with {totalDocumentsUploaded} document(s).",
+                    data = new
+                    {
+                        TasksCreated = createdTasks.Count,
+                        ProjectId = data.ProjectId,
+                        ProjectName = data.ProjectName,
+                        DocumentsUploaded = totalDocumentsUploaded,
+                        TaskIds = createdTasks.Select(t => t.Id).ToList()
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                Log.Error($"{data?.UserId ?? "Unknown"}",
+                    $"Error creating tasks: {ex.Message}",
+                    "Task");
+                return Ok(new { success = false, message = $"An error occurred while creating tasks: {ex.Message}" });
+            }
+        }
+
+        [HttpPost("UpdateTask")]
+        public async Task<IActionResult> UpdateTask([FromForm] TaskUpdateDto data)
+        {
+            var transaction = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                // Required field validations
+                if (data.Id <= 0)
+                {
+                    return Ok(new { success = false, message = "Task Id is required." });
+                }
+
+                if (string.IsNullOrWhiteSpace(data.UserId))
+                {
+                    return Ok(new { success = false, message = "UserId is required." });
+                }
+
+                // Check if task exists
+                var existingTask = await _dbContext.Tasks.FirstOrDefaultAsync(t => t.Id == data.Id);
+                if (existingTask == null)
+                {
+                    return Ok(new { success = false, message = "Task not found. Please provide a valid Task Id." });
+                }
+
+                // Validate TaskEndDate >= TaskStartDate
+                var startDate = data.TaskStartDate ?? existingTask.TaskStartDate;
+                var endDate = data.TaskEndDate ?? existingTask.TaskEndDate;
+
+                if (startDate != null && endDate != null && endDate < startDate)
+                {
+                    return Ok(new { success = false, message = "TaskEndDate must be greater than or equal to TaskStartDate." });
+                }
+
+                // Check for duplicate task (excluding current task)
+                if (!string.IsNullOrWhiteSpace(data.TaskName) && !string.IsNullOrWhiteSpace(data.EmployeeUserId))
+                {
+                    var projectId = data.ProjectId ?? existingTask.ProjectId;
+                    var duplicateTask = _dbContext.Tasks.FirstOrDefault(t =>
+                        t.Id != data.Id &&
+                        t.ProjectId == projectId &&
+                        t.TaskName.ToLower().Trim() == data.TaskName.ToLower().Trim() &&
+                        t.EmployeeUserId.ToLower().Trim() == data.EmployeeUserId.ToLower().Trim());
+
+                    if (duplicateTask != null)
+                    {
+                        return Ok(new
+                        {
+                            success = false,
+                            message = $"A task with name '{data.TaskName}' already exists for employee '{data.EmployeeUserId}' in this project."
+                        });
+                    }
+                }
+
+                // Track changes for logging
+                var changes = new List<string>();
+
+                // Update ProjectId if changed
+                if (data.ProjectId != null && data.ProjectId > 0 && data.ProjectId != existingTask.ProjectId)
+                {
+                    var projectExists = await _dbContext.Project.FirstOrDefaultAsync(p => p.Id == data.ProjectId);
+                    if (projectExists == null)
+                    {
+                        return Ok(new { success = false, message = "Project not found. Please provide a valid ProjectId." });
+                    }
+
+                    changes.Add($"ProjectId changed from '{existingTask.ProjectId}' to '{data.ProjectId}'");
+                    existingTask.ProjectId = data.ProjectId;
+                }
+
+                // Update ProjectName
+                if (!string.IsNullOrWhiteSpace(data.ProjectName) && data.ProjectName != existingTask.ProjectName)
+                {
+                    changes.Add($"ProjectName changed from '{existingTask.ProjectName}' to '{data.ProjectName}'");
+                    existingTask.ProjectName = data.ProjectName;
+                }
+
+                // Update Manager Name based on UserId
+                var manager = await _dbContext.Users.FirstOrDefaultAsync(u =>
+                    u.UserID.ToString().ToLower() == data.UserId.ToString().ToLower());
+                var managerName = manager?.FullName ?? "Unknown";
+
+                if (managerName != existingTask.ManagerNames)
+                {
+                    changes.Add($"ManagerNames changed from '{existingTask.ManagerNames}' to '{managerName}'");
+                    existingTask.ManagerNames = managerName;
+                }
+
+                // Update EmployeeUserId
+                if (!string.IsNullOrWhiteSpace(data.EmployeeUserId) && data.EmployeeUserId != existingTask.EmployeeUserId)
+                {
+                    changes.Add($"EmployeeUserId changed from '{existingTask.EmployeeUserId}' to '{data.EmployeeUserId}'");
+                    existingTask.EmployeeUserId = data.EmployeeUserId;
+                }
+
+                // Update TaskName
+                if (!string.IsNullOrWhiteSpace(data.TaskName) && data.TaskName != existingTask.TaskName)
+                {
+                    changes.Add($"TaskName changed from '{existingTask.TaskName}' to '{data.TaskName}'");
+                    existingTask.TaskName = data.TaskName;
+                }
+
+                // Update TaskDesc
+                if (!string.IsNullOrWhiteSpace(data.TaskDesc) && data.TaskDesc != existingTask.TaskDesc)
+                {
+                    changes.Add($"TaskDesc updated");
+                    existingTask.TaskDesc = data.TaskDesc;
+                }
+
+                // Update TaskStartDate
+                if (data.TaskStartDate != null && data.TaskStartDate != existingTask.TaskStartDate)
+                {
+                    changes.Add($"TaskStartDate changed from '{existingTask.TaskStartDate?.ToString("yyyy-MM-dd")}' to '{data.TaskStartDate?.ToString("yyyy-MM-dd")}'");
+                    existingTask.TaskStartDate = data.TaskStartDate;
+                }
+
+                // Update TaskEndDate
+                if (data.TaskEndDate != null && data.TaskEndDate != existingTask.TaskEndDate)
+                {
+                    changes.Add($"TaskEndDate changed from '{existingTask.TaskEndDate?.ToString("yyyy-MM-dd")}' to '{data.TaskEndDate?.ToString("yyyy-MM-dd")}'");
+                    existingTask.TaskEndDate = data.TaskEndDate;
+                }
+
+                // Update IsActive
+                if (data.IsActive != null && data.IsActive != existingTask.IsActive)
+                {
+                    changes.Add($"IsActive changed from '{existingTask.IsActive}' to '{data.IsActive}'");
+                    existingTask.IsActive = data.IsActive;
+                }
+
+                // Update Status
+                if (!string.IsNullOrWhiteSpace(data.Status) && data.Status != existingTask.Status)
+                {
+                    changes.Add($"Status changed from '{existingTask.Status}' to '{data.Status}'");
+                    existingTask.Status = data.Status;
+                }
+
+                // Update ManagerCompleteStatus
+                if (data.ManagerCompleteStatus != null && data.ManagerCompleteStatus != existingTask.ManagerCompleteStatus)
+                {
+                    changes.Add($"ManagerCompleteStatus changed from '{existingTask.ManagerCompleteStatus}' to '{data.ManagerCompleteStatus}'");
+                    existingTask.ManagerCompleteStatus = data.ManagerCompleteStatus;
+                }
+
+                // Set ModifiedBy and ModifiedOn
+                existingTask.ModifiedBy = data.UserId;
+                existingTask.ModifiedOn = DateTime.Now;
+
+                _dbContext.Tasks.Update(existingTask);
+                await _dbContext.SaveChangesAsync();
+
+                // Handle Documents Update - Delete existing and upload new
+                int documentsDeleted = 0;
+                int documentsUploaded = 0;
+
+                if (data.Documents != null && data.Documents.Any())
+                {
+                    // Delete existing documents
+                    var existingDocuments = _dbContext.DocumentMaster
+                        .Where(d => d.DocumentId == data.Id.ToString() && d.DocumentType == "TaskDocuments")
+                        .ToList();
+
+                    if (existingDocuments.Any())
+                    {
+                        foreach (var doc in existingDocuments)
+                        {
+                            // Delete physical file
+                            if (!string.IsNullOrWhiteSpace(doc.DocumentPath) && System.IO.File.Exists(doc.DocumentPath))
+                            {
+                                try
+                                {
+                                    System.IO.File.Delete(doc.DocumentPath);
+                                }
+                                catch (Exception fileEx)
+                                {
+                                    Log.Error(data.UserId, $"Error deleting file {doc.DocumentPath}: {fileEx.Message}", "Task");
+                                }
+                            }
+                        }
+
+                        _dbContext.DocumentMaster.RemoveRange(existingDocuments);
+                        await _dbContext.SaveChangesAsync();
+                        documentsDeleted = existingDocuments.Count;
+                    }
+
+                    // Upload new documents
+                    var documentDto = new Documentdto
+                    {
+                        Documents = data.Documents,
+                        DocumentId = data.Id.ToString(),
+                        documentType = "TaskDocuments",
+                        FolderName = "TaskDocuments",
+                        UserID = data.UserId
+                    };
+
+                    await _docservice.DocumentsUpload(documentDto);
+                    documentsUploaded = data.Documents.Count;
+                    changes.Add($"Documents updated: {documentsDeleted} removed, {documentsUploaded} added");
+                }
+
+                // Log updates
+                if (changes.Any())
+                {
+                    var changesSummary = string.Join("; ", changes);
+                    Log.DataLog($"{data.UserId}",
+                        $"Task Id {existingTask.Id} ('{existingTask.TaskName}') updated by {data.UserId}. Changes: {changesSummary}",
+                        "Task");
+
+                    // Create UserActivityLog
+                    var userActivityLog = new UserActivityLog
+                    {
+                        SNType = "Task Update",
+                        SNTital = "Task Updated",
+                        SNDescription = $"Task '{existingTask.TaskName}' (Id: {existingTask.Id}) for project '{existingTask.ProjectName}' was successfully updated by manager '{managerName}'. Changes: {changesSummary}",
+                        SNActionUserId = data.UserId,
+                        CreatedOn = DateTime.Now,
+                        IsActive = true,
+                        IsRead = false
+                    };
+
+                    _dbContext.UserActivityLog.Add(userActivityLog);
+                    await _dbContext.SaveChangesAsync();
+                }
+
+                await transaction.CommitAsync();
+
+                var responseMessage = changes.Any()
+                    ? $"Task updated successfully. {changes.Count} change(s) applied."
+                    : "No changes detected. Task remains unchanged.";
+
+                return Ok(new
+                {
+                    success = true,
+                    message = responseMessage,
+                    data = new
+                    {
+                        TaskId = existingTask.Id,
+                        TaskName = existingTask.TaskName,
+                        ProjectName = existingTask.ProjectName,
+                        EmployeeUserId = existingTask.EmployeeUserId,
+                        Status = existingTask.Status,
+                        ChangesApplied = changes.Count,
+                        DocumentsDeleted = documentsDeleted,
+                        DocumentsUploaded = documentsUploaded
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                Log.Error($"{data?.UserId ?? "Unknown"}",
+                    $"Error updating task Id {data?.Id}: {ex.Message}",
+                    "Task");
+                return Ok(new { success = false, message = $"An error occurred while updating task: {ex.Message}" });
+            }
+        }
+
+        [HttpPost("DeleteTaskById")]
+        public async Task<IActionResult> DeleteTaskById(int taskId, string? userId)
+        {
+            try
+            {
+                if (taskId <= 0)
+                {
+                    return Ok(new { success = false, message = "Invalid Task Id." });
+                }
+
+                if (string.IsNullOrEmpty(userId))
+                {
+                    return Ok(new { success = false, message = "UserId is required." });
+                }
+
+                var userExists = await _dbContext.Users.AnyAsync(u => u.UserID.ToString().ToLower() == userId.ToLower());
+                if (!userExists)
+                {
+                    return Ok(new { success = false, message = "UserId not found." });
+                }
+
+                var task = await _dbContext.Tasks.FirstOrDefaultAsync(t => t.Id == taskId);
+
+                if (task == null)
+                {
+                    return Ok(new { success = false, message = "Task not found." });
+                }
+
+                var transaction = await _dbContext.Database.BeginTransactionAsync();
+                try
+                {
+                    // Delete related documents
+                    var documentList = await _dbContext.DocumentMaster
+                        .Where(d => d.DocumentId == taskId.ToString() && d.DocumentType == "TaskDocuments")
+                        .ToListAsync();
+
+                    if (documentList.Any())
+                        _dbContext.DocumentMaster.RemoveRange(documentList);
+
+                    // Delete the task
+                    _dbContext.Tasks.Remove(task);
+
+                    await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    Log.DataLog(userId, $"Task Id {taskId} ('{task.TaskName}') and its documents deleted successfully by {userId}", "Tasks");
+
+                    var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.UserID.ToString().ToLower() == userId.ToLower());
+                    var userName = user?.FullName ?? "Unknown User";
+
+                    var userActivityLog = new UserActivityLog
+                    {
+                        SNType = "Task Deletion",
+                        SNTital = "Task Deleted",
+                        SNDescription = $"Task '{task.TaskName}' (Id: {taskId}) and its related documents were successfully deleted by user '{userName}'.",
+                        SNActionUserId = userId,
+                        CreatedOn = DateTime.Now,
+                        IsActive = true,
+                        IsRead = false
+                    };
+                    _dbContext.UserActivityLog.Add(userActivityLog);
+                    await _dbContext.SaveChangesAsync();
+
+                    return Ok(new { success = true, message = "Task deleted successfully." });
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    return Ok(new { success = false, message = $"Error deleting Task: {ex.Message}" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { success = false, message = $"Unexpected error: {ex.Message}" });
+            }
+        }
+
+
+        #endregion
 
         #region Task Information related API's
+
+        [HttpGet("GetAllTaskInfoDetailsByProjectId/{projectId}")]
+        public async Task<IActionResult> GetAllTaskInfoDetailsByProjectId(int projectId)
+        {
+            try
+            {
+                // Validation
+                if (projectId <= 0)
+                {
+                    return Ok(new { success = false, message = "ProjectId is required." });
+                }
+
+                // Check if project exists and is active
+                var projectExists = await _dbContext.Project
+                    .AnyAsync(p => p.Id == projectId && p.IsActive == true);
+
+                if (!projectExists)
+                {
+                    return Ok(new { success = false, message = "Project not found." });
+                }
+
+                // Fetch task-related info with documents
+                var TaskInfoDetails = await (from ti in _dbContext.TaskRelatedInfo
+                                             where ti.ProjectId == projectId && ti.IsActive == true
+                                             orderby ti.CreatedOn descending
+                                             select new
+                                             {
+                                                 ti.Id,
+                                                 ti.TaskId,
+                                                 ti.ProjectId,
+                                                 ti.Comments,
+                                                 ti.IsCompleted,
+                                                 ti.IsActive,
+                                                 ti.CreatedOn,
+                                                 ti.CreatedBy,
+                                                 ti.ModifiedOn,
+                                                 ti.ModifiedBy,
+                                                 Documents = (from doc in _dbContext.DocumentMaster
+                                                              where doc.DocumentId == ti.Id.ToString() &&
+                                                                    doc.DocumentType == "TaskRelatedInfoDocuments"
+                                                              select new
+                                                              {
+                                                                  doc.Id,
+                                                                  doc.DocumentId,
+                                                                  doc.DocumentType,
+                                                                  doc.DocumentPath,
+                                                                  doc.DocumentURL,
+                                                                  doc.CreatedBy,
+                                                                  doc.CreatedOn
+                                                              }).ToList()
+                                             }).ToListAsync();
+
+                if (TaskInfoDetails == null || TaskInfoDetails.Count == 0)
+                {
+                    return Ok(new { success = false, message = "No task info found for this project.", data = TaskInfoDetails });
+                }
+
+                return Ok(new { success = true, message = "Task info retrieved successfully.", data = TaskInfoDetails });
+            }
+            catch (Exception ex)
+            {
+                return Ok(new { success = false, message = $"An error occurred while retrieving task info: {ex.Message}" });
+            }
+        }
+
 
         [HttpPost("CreateTaskRelatedInfo")]
         public async Task<IActionResult> CreateTaskRelatedInfo([FromForm] TaskRelatedInfoDto data)
@@ -73,7 +820,7 @@ namespace TMS_API.Controllers
 
                 await _dbContext.TaskRelatedInfo.AddAsync(newTaskRelatedInfo);
                 await _dbContext.SaveChangesAsync();
-                int taskRelatedInfoId = newTaskRelatedInfo.Id;
+                int Id = newTaskRelatedInfo.Id;
 
                 // Handle document uploads
                 int documentCount = 0;
@@ -82,7 +829,7 @@ namespace TMS_API.Controllers
                     var documentDto = new Documentdto
                     {
                         Documents = data.Documents,
-                        DocumentId = taskRelatedInfoId.ToString(),
+                        DocumentId = Id.ToString(),
                         documentType = "TaskRelatedInfoDocuments",
                         FolderName = "TaskRelatedInfoDocuments",
                         UserID = data.UserId
@@ -107,7 +854,7 @@ namespace TMS_API.Controllers
                 {
                     SNType = "Task Info Creation",
                     SNTital = "Task Related Info Created",
-                    SNDescription = $"Task related information (Id: {taskRelatedInfoId}) was successfully created for TaskId {data.TaskId} and ProjectId {data.ProjectId} by user '{createdByName}' with {documentCount} document(s).",
+                    SNDescription = $"Task related information (Id: {Id}) was successfully created for TaskId {data.TaskId} and ProjectId {data.ProjectId} by user '{createdByName}' with {documentCount} document(s).",
                     SNActionUserId = data.UserId,
                     CreatedOn = DateTime.Now,
                     IsActive = true,
@@ -125,7 +872,7 @@ namespace TMS_API.Controllers
                     message = $"Task related information created successfully with {documentCount} document(s).",
                     data = new
                     {
-                        TaskRelatedInfoId = newTaskRelatedInfo.Id,
+                        Id = newTaskRelatedInfo.Id,
                         TaskId = newTaskRelatedInfo.TaskId,
                         ProjectId = newTaskRelatedInfo.ProjectId,
                         DocumentsUploaded = documentCount
@@ -141,7 +888,6 @@ namespace TMS_API.Controllers
                 return Ok(new { success = false, message = $"An error occurred while creating task related information: {ex.Message}" });
             }
         }
-
 
         [HttpPost("UpdateTaskRelatedInfo")]
         public async Task<IActionResult> UpdateTaskRelatedInfo([FromForm] TaskRelatedInfoDto data)
@@ -273,7 +1019,7 @@ namespace TMS_API.Controllers
                     message = responseMessage,
                     data = new
                     {
-                        TaskRelatedInfoId = existingTaskRelatedInfo.Id,
+                        Id = existingTaskRelatedInfo.Id,
                         ChangesApplied = changes.Count,
                         NewDocumentsAdded = newDocumentCount
                     }
@@ -289,116 +1035,75 @@ namespace TMS_API.Controllers
             }
         }
 
-
-        [HttpPost("DeleteTaskRelatedInfoById")]
-        public async Task<IActionResult> DeleteTaskRelatedInfoById([FromBody] DeleteRequestDto data)
+        [HttpPost("DeleteTaskRelatedInfoDataById")]
+        public async Task<IActionResult> DeleteTaskRelatedInfoDataById(int Id, string? userId)
         {
-            var transaction = await _dbContext.Database.BeginTransactionAsync();
             try
             {
-                if (data.Id <= 0)
-                    return Ok(new { success = false, message = "Valid TaskRelatedInfo Id is required." });
+                if (Id <= 0)
+                {
+                    return Ok(new { success = false, message = "Invalid TaskRelatedInfo Id." });
+                }
 
-                if (string.IsNullOrWhiteSpace(data.UserId))
+                if (string.IsNullOrEmpty(userId))
+                {
                     return Ok(new { success = false, message = "UserId is required." });
-
-                // Check if TaskRelatedInfo exists
-                var taskRelatedInfo = await _dbContext.TaskRelatedInfo
-                    .FirstOrDefaultAsync(t => t.Id == data.Id);
-
-                if (taskRelatedInfo == null)
-                {
-                    return Ok(new { success = false, message = "Task related information not found." });
                 }
 
-                if (taskRelatedInfo.IsActive == false)
+                var userExists = await _dbContext.Users.AnyAsync(u => u.UserID.ToString().ToLower() == userId.ToLower());
+                if (!userExists)
                 {
-                    return Ok(new { success = false, message = "Task related information is already deleted." });
+                    return Ok(new { success = false, message = "UserId not found." });
                 }
 
-                // Get documents associated with this TaskRelatedInfo
-                var documents = await _dbContext.DocumentMaster
-                    .Where(d => d.DocumentId == data.Id.ToString() &&
-                               d.DocumentType == "TaskRelatedInfoDocuments")
-                    .ToListAsync();
+                var taskInfo = await _dbContext.TaskRelatedInfo.FirstOrDefaultAsync(t => t.Id == Id);
 
-                int documentCount = documents.Count;
+                if (taskInfo == null)
+                    return Ok(new { success = false, message = "TaskRelatedInfo not found." });
 
-                // Soft delete documents (mark as inactive)
-                if (documents.Any())
+                var transaction = await _dbContext.Database.BeginTransactionAsync();
+                try
                 {
-                    foreach (var doc in documents)
+                    var documentList = await _dbContext.DocumentMaster.Where(d => d.DocumentId == Id.ToString() && d.DocumentType == "TaskRelatedInfoDocuments").ToListAsync();
+
+                    if (documentList.Any())
+                        _dbContext.DocumentMaster.RemoveRange(documentList);
+
+                    _dbContext.TaskRelatedInfo.Remove(taskInfo);
+
+                    await _dbContext.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    Log.DataLog(userId, $"TaskRelatedInfo Id {Id} and its documents deleted successfully by {userId}", "TaskRelatedInfo");
+
+                    var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.UserID.ToString().ToLower() == userId.ToLower());
+                    var userName = user?.FullName ?? "Unknown User";
+                    var userActivityLog = new UserActivityLog
                     {
-                        doc.ModifiedBy = data.UserId;
-                        doc.ModifiedOn = DateTime.Now;
-                    }
-                    _dbContext.DocumentMaster.UpdateRange(documents);
+                        SNType = "TaskRelatedInfo Deletion",
+                        SNTital = "TaskRelatedInfo Deleted",
+                        SNDescription = $"TaskRelatedInfo Id '{Id}' and its related documents were successfully deleted by user '{userName}'.",
+                        SNActionUserId = userId,
+                        CreatedOn = DateTime.Now,
+                        IsActive = true,
+                        IsRead = false
+                    };
+                    _dbContext.UserActivityLog.Add(userActivityLog);
+                    await _dbContext.SaveChangesAsync();
+                    return Ok(new { success = true, message = "TaskRelatedInfo deleted successfully." });
                 }
-
-                // Soft delete TaskRelatedInfo (mark as inactive)
-                taskRelatedInfo.IsActive = false;
-                taskRelatedInfo.ModifiedBy = data.UserId;
-                taskRelatedInfo.ModifiedOn = DateTime.Now;
-
-                _dbContext.TaskRelatedInfo.Update(taskRelatedInfo);
-                await _dbContext.SaveChangesAsync();
-
-                // Log deletion
-                Log.DataLog($"{data.UserId}",
-                    $"TaskRelatedInfo Id {taskRelatedInfo.Id} (TaskId: {taskRelatedInfo.TaskId}, ProjectId: {taskRelatedInfo.ProjectId}) deleted by {data.UserId}. {documentCount} document(s) also deleted.",
-                    "TaskRelatedInfo");
-
-                // Get user details for activity log
-                var user = await _dbContext.Users.FirstOrDefaultAsync(u =>
-                    u.UserID.ToString().ToLower() == data.UserId.ToString().ToLower());
-                var deletedByName = user?.FullName ?? "Unknown User";
-
-                // Create UserActivityLog
-                var userActivityLog = new UserActivityLog
+                catch (Exception ex)
                 {
-                    SNType = "Task Info Deletion",
-                    SNTital = "Task Related Info Deleted",
-                    SNDescription = $"Task related information (Id: {taskRelatedInfo.Id}) for TaskId {taskRelatedInfo.TaskId} and ProjectId {taskRelatedInfo.ProjectId} was successfully deleted by user '{deletedByName}'. {documentCount} associated document(s) also deleted.",
-                    SNActionUserId = data.UserId,
-                    CreatedOn = DateTime.Now,
-                    IsActive = true,
-                    IsRead = false
-                };
-
-                _dbContext.UserActivityLog.Add(userActivityLog);
-                await _dbContext.SaveChangesAsync();
-
-                await transaction.CommitAsync();
-
-                return Ok(new
-                {
-                    success = true,
-                    message = $"Task related information deleted successfully. {documentCount} associated document(s) also deleted.",
-                    data = new
-                    {
-                        TaskRelatedInfoId = taskRelatedInfo.Id,
-                        TaskId = taskRelatedInfo.TaskId,
-                        ProjectId = taskRelatedInfo.ProjectId,
-                        DocumentsDeleted = documentCount
-                    }
-                });
+                    await transaction.RollbackAsync();
+                    return Ok(new { success = false, message = $"Error deleting TaskRelatedInfo: {ex.Message}" });
+                }
             }
             catch (Exception ex)
             {
-                await transaction.RollbackAsync();
-                Log.Error($"{data?.UserId ?? "Unknown"}",
-                    $"Error deleting TaskRelatedInfo Id {data?.Id}: {ex.Message}",
-                    "TaskRelatedInfo");
-                return Ok(new { success = false, message = $"An error occurred while deleting task related information: {ex.Message}" });
+                return Ok(new { success = false, message = $"Unexpected error: {ex.Message}" });
             }
         }
 
-        // Helper DTO class for Delete operation
-        public class DeleteRequestDto
-        {
-            public int Id { get; set; }
-            public string? UserId { get; set; }
-        }
         #endregion
     }
 }

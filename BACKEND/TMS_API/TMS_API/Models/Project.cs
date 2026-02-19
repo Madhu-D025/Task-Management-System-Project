@@ -40,6 +40,17 @@ namespace TMS_API.Models
 
 
     }
+
+    public class  ProjectUpdateStstusDto
+    {
+        public int ProjectId { get; set; }
+        public string? UserId { get; set; }
+        public string? Status { get; set; }
+        public bool? IsCompleted { get; set; }
+        public bool? IsCancelled { get; set; }
+
+    }
+
     public class ProjectEmployees
     {
         [Key]

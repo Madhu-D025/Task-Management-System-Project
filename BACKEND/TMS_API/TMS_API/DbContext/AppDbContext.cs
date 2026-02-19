@@ -28,6 +28,7 @@ namespace TMS_API.DBContext
         public DbSet<UserActivityLog> UserActivityLog { get; set; }
         public DbSet<Project> Project { get; set; }
         public DbSet<ProjectEmployees> ProjectEmployees { get; set; }
+        public DbSet<Tasks> Tasks { get; set; }
         public DbSet<TaskRelatedInfo> TaskRelatedInfo { get; set; }
 
 
