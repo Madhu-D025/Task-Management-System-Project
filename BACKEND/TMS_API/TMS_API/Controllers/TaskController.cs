@@ -710,7 +710,7 @@ namespace TMS_API.Controllers
 
         #region Task Information related API's
 
-        [HttpGet("GetAllTaskInfoDetailsByProjectId/{projectId}")]
+        [HttpGet("GetAllTaskInfoDetailsByProjectId")]
         public async Task<IActionResult> GetAllTaskInfoDetailsByProjectId(int projectId)
         {
             try

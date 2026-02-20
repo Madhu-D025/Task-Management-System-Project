@@ -13,12 +13,12 @@ namespace TMS_API.Controllers
     [Route("api/[controller]")]
     public class ProjectController : Controller
     {
-        private readonly IProjectServices _projectServices;
+        //private readonly IProjectServices _projectServices;
         private readonly AppDbContext _dbContext;
 
-        public ProjectController(IProjectServices projectServices, AppDbContext dbContext)
+        public ProjectController( AppDbContext dbContext)
         {
-            _projectServices = projectServices;
+            //_projectServices = projectServices;
             _dbContext = dbContext;
         }
 
@@ -193,18 +193,20 @@ namespace TMS_API.Controllers
             var transaction = await _dbContext.Database.BeginTransactionAsync();
             try
             {
-                // Required field validations
                 if (string.IsNullOrWhiteSpace(data.ProjectName))
+                {
                     return Ok(new { success = false, message = "ProjectName is required." });
+                }
 
                 if (string.IsNullOrWhiteSpace(data.UserId))
+                {
                     return Ok(new { success = false, message = "UserId is required." });
+                }
 
-                if (data.StartDate == null)
-                    return Ok(new { success = false, message = "StartDate is required." });
-
-                if (data.EndDate == null)
-                    return Ok(new { success = false, message = "EndDate is required." });
+                if (data.StartDate == null || data.EndDate == null)
+                {
+                    return Ok(new { success = false, message = "StartDate & EndDate is required." });
+                }
 
                 // Date validation
                 if (data.EndDate < data.StartDate)
@@ -223,8 +225,7 @@ namespace TMS_API.Controllers
                 }
 
                 // Get Manager Name from UserId
-                var manager = await _dbContext.Users.FirstOrDefaultAsync(u =>
-                    u.UserID.ToString().ToLower() == data.UserId.ToString().ToLower());
+                var manager = await _dbContext.Users.FirstOrDefaultAsync(u => u.UserID.ToString().ToLower() == data.UserId.ToString().ToLower());
 
                 if (manager == null)
                 {
@@ -241,10 +242,10 @@ namespace TMS_API.Controllers
 
                 // Filter unique employees based on EmployeeId
                 var uniqueEmployees = data.ProjectEmployeesDto
-                    .GroupBy(e => e.EmployeeId?.ToLower().Trim())
-                    .Select(g => g.First())
-                    .Where(e => !string.IsNullOrWhiteSpace(e.EmployeeId))
-                    .ToList();
+                                        .GroupBy(e => e.EmployeeId?.ToLower().Trim())
+                                        .Select(g => g.First())
+                                        .Where(e => !string.IsNullOrWhiteSpace(e.EmployeeId))
+                                        .ToList();
 
                 if (uniqueEmployees.Count == 0)
                 {
@@ -261,8 +262,8 @@ namespace TMS_API.Controllers
                     ManagerId = data.UserId,
                     ManagerName = managerName,
                     IsActive = data.IsActive ?? true,
-                    IsCompleted = data.IsCompleted ?? false,
-                    IsCancelled = data.IsCancelled ?? false,
+                    IsCompleted = false,
+                    IsCancelled = false,
                     Status = data.Status ?? "In Progress",
                     CreatedBy = data.UserId,
                     CreatedOn = DateTime.Now
@@ -335,23 +336,22 @@ namespace TMS_API.Controllers
             {
                 // Required field validations
                 if (data.Id <= 0)
+                {
                     return Ok(new { success = false, message = "Project Id is required." });
+                }
 
                 if (string.IsNullOrWhiteSpace(data.UserId))
+                {
                     return Ok(new { success = false, message = "UserId is required." });
+                }
 
-                // Check if project exists
                 var existingProject = await _dbContext.Project.FirstOrDefaultAsync(p => p.Id == data.Id);
                 if (existingProject == null)
                 {
                     return Ok(new { success = false, message = "Project not found. Please provide a valid Project Id." });
                 }
 
-                // Validate ProjectName if provided
-                if (string.IsNullOrWhiteSpace(data.ProjectName))
-                    return Ok(new { success = false, message = "ProjectName is required." });
 
-                // Date validation if both dates are provided
                 if (data.StartDate != null && data.EndDate != null)
                 {
                     if (data.EndDate < data.StartDate)
