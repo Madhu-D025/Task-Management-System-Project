@@ -87,7 +87,7 @@ namespace TMS_API.Controllers
                                 }).ToList();
 
                 var TotalProjectsCount = (from p in Projects
-                                          where p.IsActive == true && p.IsCompleted == false && p.IsCancelled == false
+                                          where p.IsActive == true
                                           select new
                                           {
                                               p.Id
@@ -266,11 +266,11 @@ namespace TMS_API.Controllers
                                                             && pe.IsActive == true
                                                             select new {pe.ProjectId}).Count(),
                                            TotalTasks = (from t in Task
-                                                        where t.EmployeeUserId.ToString() == u.UserID.ToString().ToLower() 
+                                                        where t.EmployeeUserId.ToString().ToLower() == u.UserID.ToString().ToLower() 
                                                         && t.IsActive == true
                                                         select new {t.Id}).Count(),
                                             CompletedTasks = (from t in Task
-                                                              where t.EmployeeUserId.ToString() == u.UserID.ToString().ToLower()
+                                                              where t.EmployeeUserId.ToString().ToLower() == u.UserID.ToString().ToLower()
                                                               && t.IsActive == true && t.ManagerCompleteStatus == true
                                                               select new {t.Id}).Count(),
                                         }).ToList();

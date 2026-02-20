@@ -60,7 +60,7 @@ namespace TMS_API.Controllers
                                    }).ToList();
 
                 var ActiveProjects = (from p in project
-                                   where p.CreatedBy.ToLower() == UserId.ToLower() && p.IsActive == true && p.Status == "In Progress" && p.IsCompleted == false
+                                   where p.CreatedBy.ToLower() == UserId.ToLower() && p.IsActive == true && p.IsCompleted == false && p.IsCancelled == false
                                    orderby p.CreatedOn descending
                                    select new
                                    {
@@ -77,7 +77,7 @@ namespace TMS_API.Controllers
                                    }).ToList();
 
                 var CompletedProjects = (from p in project
-                                      where p.CreatedBy.ToLower() == UserId.ToLower() && p.IsActive == true && p.Status == "Completed" && p.IsCompleted == true
+                                      where p.CreatedBy.ToLower() == UserId.ToLower() && p.IsActive == true  && p.IsCompleted == true
                                       orderby p.CreatedOn descending
                                       select new
                                       {
@@ -94,7 +94,7 @@ namespace TMS_API.Controllers
                                       }).ToList();
 
                 var CancelledProjects = (from p in project
-                                         where p.CreatedBy.ToLower() == UserId.ToLower() && p.IsActive == true && p.Status == "Cancelled" && p.IsCancelled == true
+                                         where p.CreatedBy.ToLower() == UserId.ToLower() && p.IsActive == true && p.IsCancelled == true
                                          orderby p.CreatedOn descending
                                          select new
                                          {

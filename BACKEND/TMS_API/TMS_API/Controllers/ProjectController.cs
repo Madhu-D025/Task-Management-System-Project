@@ -614,7 +614,7 @@ namespace TMS_API.Controllers
                     if (data.IsCompleted == true)
                     {
                         existingProject.Status = "Completed";
-                        existingProject.IsActive = false;
+                        existingProject.IsActive = true;
                         statusMessage = "Project marked as Completed successfully.";
                     }
                     else
@@ -634,7 +634,7 @@ namespace TMS_API.Controllers
                     if (data.IsCancelled == true)
                     {
                         existingProject.Status = "Cancelled";
-                        existingProject.IsActive = false;
+                        existingProject.IsActive = true;
                         statusMessage = "Project marked as Cancelled successfully.";
                     }
                     else
@@ -694,18 +694,18 @@ namespace TMS_API.Controllers
                 {
                     success = true,
                     message = statusMessage,
-                    data = new
-                    {
-                        ProjectId = existingProject.Id,
-                        ProjectName = existingProject.ProjectName,
-                        PreviousStatus = oldStatus,
-                        CurrentStatus = existingProject.Status,
-                        IsCompleted = existingProject.IsCompleted,
-                        IsCancelled = existingProject.IsCancelled,
-                        IsActive = existingProject.IsActive,
-                        UpdatedBy = modifiedByName,
-                        UpdatedOn = existingProject.ModifiedOn
-                    }
+                    //data = new
+                    //{
+                    //    ProjectId = existingProject.Id,
+                    //    ProjectName = existingProject.ProjectName,
+                    //    PreviousStatus = oldStatus,
+                    //    CurrentStatus = existingProject.Status,
+                    //    IsCompleted = existingProject.IsCompleted,
+                    //    IsCancelled = existingProject.IsCancelled,
+                    //    IsActive = existingProject.IsActive,
+                    //    UpdatedBy = modifiedByName,
+                    //    UpdatedOn = existingProject.ModifiedOn
+                    //}
                 });
             }
             catch (Exception ex)

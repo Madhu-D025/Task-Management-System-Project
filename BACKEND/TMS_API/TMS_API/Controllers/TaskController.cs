@@ -52,7 +52,7 @@ namespace TMS_API.Controllers
                                              t.ModifiedOn,
                                              t.ModifiedBy,
                                              Documents = (from doc in _dbContext.DocumentMaster
-                                                          where  doc.DocumentId == t.Id.ToString() && doc.DocumentType == "TaskDocuments"
+                                                          where  doc.DocumentId == t.ProjectId.ToString() && doc.InitiationId == t.Id && doc.DocumentType == "TaskDocuments"
                                                           select new
                                                           {
                                                               doc.Id,
@@ -62,7 +62,7 @@ namespace TMS_API.Controllers
                                                               doc.DocumentURL,
                                                               doc.CreatedBy,
                                                               doc.CreatedOn
-                                                          })
+                                                          }).ToList(),
                                          }).ToListAsync();
 
                 if (TaskDetails == null || TaskDetails.Count == 0)
@@ -109,7 +109,7 @@ namespace TMS_API.Controllers
                                              t.ModifiedOn,
                                              t.ModifiedBy,
                                              Documents = (from doc in _dbContext.DocumentMaster
-                                                          where doc.DocumentId == t.Id.ToString() && doc.DocumentType == "TaskDocuments"
+                                                          where doc.DocumentId == t.ProjectId.ToString() && doc.InitiationId == t.Id && doc.DocumentType == "TaskDocuments"
                                                           select new
                                                           {
                                                               doc.Id,
@@ -119,7 +119,7 @@ namespace TMS_API.Controllers
                                                               doc.DocumentURL,
                                                               doc.CreatedBy,
                                                               doc.CreatedOn
-                                                          })
+                                                          }).ToList(),
                                          }).FirstOrDefaultAsync();
 
                 if (TaskDetails == null)
@@ -167,7 +167,7 @@ namespace TMS_API.Controllers
                                              t.ModifiedOn,
                                              t.ModifiedBy,
                                              Documents = (from doc in _dbContext.DocumentMaster
-                                                          where doc.DocumentId == t.Id.ToString() && doc.DocumentType == "TaskDocuments"
+                                                          where doc.DocumentId == t.ProjectId.ToString() && doc.InitiationId == t.Id  && doc.DocumentType == "TaskDocuments"
                                                           select new
                                                           {
                                                               doc.Id,
@@ -177,7 +177,7 @@ namespace TMS_API.Controllers
                                                               doc.DocumentURL,
                                                               doc.CreatedBy,
                                                               doc.CreatedOn
-                                                          })
+                                                          }).ToList(),
                                          }).ToListAsync();
 
                 if (TaskDetails == null || TaskDetails.Count == 0)
@@ -314,6 +314,7 @@ namespace TMS_API.Controllers
                         {
                             Documents = taskItem.Documents,
                             DocumentId = data.ProjectId.ToString(),
+                            InitiationId = data.Id,
                             documentType = "TaskDocuments",
                             FolderName = "TaskDocuments",
                             UserID = data.UserId
@@ -603,17 +604,17 @@ namespace TMS_API.Controllers
                 {
                     success = true,
                     message = responseMessage,
-                    data = new
-                    {
-                        TaskId = existingTask.Id,
-                        TaskName = existingTask.TaskName,
-                        ProjectName = existingTask.ProjectName,
-                        EmployeeUserId = existingTask.EmployeeUserId,
-                        Status = existingTask.Status,
-                        ChangesApplied = changes.Count,
-                        DocumentsDeleted = documentsDeleted,
-                        DocumentsUploaded = documentsUploaded
-                    }
+                    //data = new
+                    //{
+                    //    TaskId = existingTask.Id,
+                    //    TaskName = existingTask.TaskName,
+                    //    ProjectName = existingTask.ProjectName,
+                    //    EmployeeUserId = existingTask.EmployeeUserId,
+                    //    Status = existingTask.Status,
+                    //    ChangesApplied = changes.Count,
+                    //    DocumentsDeleted = documentsDeleted,
+                    //    DocumentsUploaded = documentsUploaded
+                    //}
                 });
             }
             catch (Exception ex)
@@ -659,7 +660,7 @@ namespace TMS_API.Controllers
                 {
                     // Delete related documents
                     var documentList = await _dbContext.DocumentMaster
-                        .Where(d => d.DocumentId == taskId.ToString() && d.DocumentType == "TaskDocuments")
+                        .Where(d => d.InitiationId == taskId && d.DocumentType == "TaskDocuments")
                         .ToListAsync();
 
                     if (documentList.Any())
