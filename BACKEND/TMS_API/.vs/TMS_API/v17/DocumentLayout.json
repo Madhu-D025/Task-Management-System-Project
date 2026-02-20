@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|solutionrelative:tms_api\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|solutionrelative:tms_api\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|solutionrelative:tms_api\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\logs\\project\\project2026-02-20.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|solutionrelative:tms_api\\logs\\project\\project2026-02-20.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|solutionrelative:tms_api\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\controllers\\managercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,18 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|solutionrelative:tms_api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|solutionrelative:tms_api\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|solutionrelative:tms_api\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|solutionrelative:tms_api\\models\\task.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{33A4B26B-E231-4E7E-8500-0E294658ED8B}|TMS_API\\TMS_API.csproj|d:\\practice projects\\.net\\taskmanagementsystem\\backend\\tms_api\\tms_api\\models\\authmaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -70,55 +74,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthMasterServices.cs",
-              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Services\\AuthMasterServices.cs",
-              "RelativeDocumentMoniker": "TMS_API\\Services\\AuthMasterServices.cs",
-              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Services\\AuthMasterServices.cs",
-              "RelativeToolTip": "TMS_API\\Services\\AuthMasterServices.cs",
-              "ViewState": "AgIAAOMAAAAAAAAAAAAEwOAAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-19T10:10:01.431Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "TMS_API\\Controllers\\AdminController.cs",
-              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "TMS_API\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAIYAAAAAAAAAAADwv78AAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-19T09:21:32.813Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "TMS_API\\Controllers\\EmployeeController.cs",
@@ -130,20 +90,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ProjectController.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\ProjectController.cs",
               "RelativeDocumentMoniker": "TMS_API\\Controllers\\ProjectController.cs",
               "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\ProjectController.cs",
               "RelativeToolTip": "TMS_API\\Controllers\\ProjectController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAALwAAAAAAAAAAAAswNACAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-16T09:29:12.657Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "ManagerController.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\ManagerController.cs",
               "RelativeDocumentMoniker": "TMS_API\\Controllers\\ManagerController.cs",
@@ -155,7 +115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "AuthMasterController.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\AuthMasterController.cs",
               "RelativeDocumentMoniker": "TMS_API\\Controllers\\AuthMasterController.cs",
@@ -167,7 +127,83 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
+              "Title": "TaskController.cs",
+              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\TaskController.cs",
+              "RelativeDocumentMoniker": "TMS_API\\Controllers\\TaskController.cs",
+              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\TaskController.cs",
+              "RelativeToolTip": "TMS_API\\Controllers\\TaskController.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAuwHoBAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T11:15:44.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Task.cs",
+              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Models\\Task.cs",
+              "RelativeDocumentMoniker": "TMS_API\\Models\\Task.cs",
+              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Models\\Task.cs",
+              "RelativeToolTip": "TMS_API\\Models\\Task.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAQwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T09:34:41.224Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "TMS_API\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "TMS_API\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAIYAAAAAAAAAAADwv78AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T09:21:32.813Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Project2026-02-20.txt",
+              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Logs\\Project\\Project2026-02-20.txt",
+              "RelativeDocumentMoniker": "TMS_API\\Logs\\Project\\Project2026-02-20.txt",
+              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Logs\\Project\\Project2026-02-20.txt",
+              "RelativeToolTip": "TMS_API\\Logs\\Project\\Project2026-02-20.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2026-02-20T05:47:10.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Project.cs",
+              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Models\\Project.cs",
+              "RelativeDocumentMoniker": "TMS_API\\Models\\Project.cs",
+              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Models\\Project.cs",
+              "RelativeToolTip": "TMS_API\\Models\\Project.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAcwDgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-16T11:26:59.489Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AuthMasterServices.cs",
+              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Services\\AuthMasterServices.cs",
+              "RelativeDocumentMoniker": "TMS_API\\Services\\AuthMasterServices.cs",
+              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Services\\AuthMasterServices.cs",
+              "RelativeToolTip": "TMS_API\\Services\\AuthMasterServices.cs",
+              "ViewState": "AgIAAOMAAAAAAAAAAAAEwOAAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T10:10:01.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "TMS_API\\Controllers\\AuthController.cs",
@@ -179,43 +215,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TaskController.cs",
-              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\TaskController.cs",
-              "RelativeDocumentMoniker": "TMS_API\\Controllers\\TaskController.cs",
-              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\TaskController.cs",
-              "RelativeToolTip": "TMS_API\\Controllers\\TaskController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAHUBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-16T11:15:44.274Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Task.cs",
-              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Models\\Task.cs",
-              "RelativeDocumentMoniker": "TMS_API\\Models\\Task.cs",
-              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Models\\Task.cs",
-              "RelativeToolTip": "TMS_API\\Models\\Task.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-16T09:34:41.224Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Project.cs",
-              "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Models\\Project.cs",
-              "RelativeDocumentMoniker": "TMS_API\\Models\\Project.cs",
-              "ToolTip": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Models\\Project.cs",
-              "RelativeToolTip": "TMS_API\\Models\\Project.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAA7wEAAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-16T11:26:59.489Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AuthMaster.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Models\\AuthMaster.cs",
               "RelativeDocumentMoniker": "TMS_API\\Models\\AuthMaster.cs",
@@ -227,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "MasterController.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Controllers\\MasterController.cs",
               "RelativeDocumentMoniker": "TMS_API\\Controllers\\MasterController.cs",
@@ -239,7 +239,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\DbContext\\AppDbContext.cs",
               "RelativeDocumentMoniker": "TMS_API\\DbContext\\AppDbContext.cs",
@@ -251,7 +251,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "ProjectServices.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Services\\ProjectServices.cs",
               "RelativeDocumentMoniker": "TMS_API\\Services\\ProjectServices.cs",
@@ -263,7 +263,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "TaskServices.cs",
               "DocumentMoniker": "D:\\Practice Projects\\.NET\\TaskManagementSystem\\BACKEND\\TMS_API\\TMS_API\\Services\\TaskServices.cs",
               "RelativeDocumentMoniker": "TMS_API\\Services\\TaskServices.cs",

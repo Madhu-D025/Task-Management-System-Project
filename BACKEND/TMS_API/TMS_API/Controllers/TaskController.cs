@@ -13,13 +13,11 @@ namespace TMS_API.Controllers
     [Route("api/[controller]")]
     public class TaskController : Controller
     {
-        private readonly ITaskServices _taskServices;
         private readonly AppDbContext _dbContext;
         private readonly DocumentService _docservice;
 
-        public TaskController(ITaskServices taskServices, AppDbContext dbContext, DocumentService docservice)
+        public TaskController(AppDbContext dbContext, DocumentService docservice)
         {
-            _taskServices = taskServices;
             _dbContext = dbContext;
             _docservice = docservice;
         }
@@ -297,9 +295,9 @@ namespace TMS_API.Controllers
                         TaskDesc = taskItem.TaskDesc,
                         TaskStartDate = taskItem.TaskStartDate,
                         TaskEndDate = taskItem.TaskEndDate,
-                        IsActive = true, // Set by default
-                        Status = "In Progress", // Set by default
-                        ManagerCompleteStatus = false, // Set by default
+                        IsActive = true, 
+                        Status = "In Progress", 
+                        ManagerCompleteStatus = false,
                         CreatedBy = data.UserId,
                         CreatedOn = DateTime.Now
                     };
@@ -315,7 +313,7 @@ namespace TMS_API.Controllers
                         var documentDto = new Documentdto
                         {
                             Documents = taskItem.Documents,
-                            DocumentId = newTask.Id.ToString(),
+                            DocumentId = data.ProjectId.ToString(),
                             documentType = "TaskDocuments",
                             FolderName = "TaskDocuments",
                             UserID = data.UserId
@@ -351,15 +349,15 @@ namespace TMS_API.Controllers
                 return Ok(new
                 {
                     success = true,
-                    message = $"{createdTasks.Count} task(s) created successfully with {totalDocumentsUploaded} document(s).",
-                    data = new
-                    {
-                        TasksCreated = createdTasks.Count,
-                        ProjectId = data.ProjectId,
-                        ProjectName = data.ProjectName,
-                        DocumentsUploaded = totalDocumentsUploaded,
-                        TaskIds = createdTasks.Select(t => t.Id).ToList()
-                    }
+                    message = $"{createdTasks.Count} Tasks created successfully with for the Project: {data.ProjectName}",
+                    //data = new
+                    //{
+                    //    TasksCreated = createdTasks.Count,
+                    //    ProjectId = data.ProjectId,
+                    //    ProjectName = data.ProjectName,
+                    //    DocumentsUploaded = totalDocumentsUploaded,
+                    //    TaskIds = createdTasks.Select(t => t.Id).ToList()
+                    //}
                 });
             }
             catch (Exception ex)

@@ -1747,7 +1747,7 @@
       }
     },
     "/api/Project/DeleteProjectById": {
-      "delete": {
+      "post": {
         "tags": [
           "Project"
         ],

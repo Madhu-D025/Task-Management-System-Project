@@ -1021,7 +1021,7 @@
     "ContainingType": "TMS_API.Controllers.ProjectController",
     "Method": "DeleteProjectById",
     "RelativePath": "api/Project/DeleteProjectById",
-    "HttpMethod": "DELETE",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [

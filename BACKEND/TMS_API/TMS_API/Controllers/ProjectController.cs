@@ -211,8 +211,10 @@ namespace TMS_API.Controllers
                 // Date validation
                 if (data.EndDate < data.StartDate)
                 {
-                    return Ok(new { success = false, message = "EndDate must be greater than or equal to StartDate." });
+                    return Ok(new { success = false, message = "EndDate must be greater than StartDate." });
                 }
+
+
 
                 // Duplicate check based on ProjectName and ProjectType
                 var existingProject = _dbContext.Project.FirstOrDefault(p =>
@@ -296,7 +298,7 @@ namespace TMS_API.Controllers
                 {
                     SNType = "Project Creation",
                     SNTital = "Project Created",
-                    SNDescription = $"Project '{data.ProjectName}' (Type: '{data.ProjectType}') was successfully created by user '{managerName}' with {uniqueEmployees.Count} employee(s) assigned.",
+                    SNDescription = $"Project '{data.ProjectName}' Type: '{data.ProjectType}' was successfully created by user '{managerName}' with {uniqueEmployees.Count} employee(s) assigned.",
                     SNActionUserId = data.UserId,
                     CreatedOn = DateTime.Now,
                     IsActive = true,
@@ -312,12 +314,12 @@ namespace TMS_API.Controllers
                 {
                     success = true,
                     message = $"Project created successfully with {uniqueEmployees.Count} employee(s) assigned.",
-                    data = new
-                    {
-                        ProjectId = newProject.Id,
-                        EmployeesAssigned = uniqueEmployees.Count,
-                        DuplicatesRemoved = data.ProjectEmployeesDto.Count - uniqueEmployees.Count
-                    }
+                    //data = new
+                    //{
+                    //    ProjectId = newProject.Id,
+                    //    EmployeesAssigned = uniqueEmployees.Count,
+                    //    DuplicatesRemoved = data.ProjectEmployeesDto.Count - uniqueEmployees.Count
+                    //}
                 });
             }
             catch (Exception ex)
@@ -356,7 +358,7 @@ namespace TMS_API.Controllers
                 {
                     if (data.EndDate < data.StartDate)
                     {
-                        return Ok(new { success = false, message = "EndDate must be greater than or equal to StartDate." });
+                        return Ok(new { success = false, message = "EndDate must be greater than StartDate." });
                     }
                 }
 
@@ -516,7 +518,7 @@ namespace TMS_API.Controllers
                     {
                         SNType = "Project Update",
                         SNTital = "Project Updated",
-                        SNDescription = $"Project '{existingProject.ProjectName}' (Id: {existingProject.Id}) was successfully updated by user '{modifiedByName}'. Changes: {changesSummary}",
+                        SNDescription = $"Project '{existingProject.ProjectName}' was successfully updated by user '{modifiedByName}'. Changes: {changesSummary}",
                         SNActionUserId = data.UserId,
                         CreatedOn = DateTime.Now,
                         IsActive = true,
@@ -537,17 +539,17 @@ namespace TMS_API.Controllers
                 {
                     success = true,
                     message = responseMessage,
-                    data = new
-                    {
-                        ProjectId = existingProject.Id,
-                        ChangesApplied = changes.Count,
-                        EmployeesUpdated = data.ProjectEmployeesDto != null && data.ProjectEmployeesDto.Count > 0,
-                        EmployeesRemoved = employeesRemovedCount,
-                        EmployeesAdded = employeesAddedCount,
-                        DuplicatesRemoved = data.ProjectEmployeesDto != null
-                            ? data.ProjectEmployeesDto.Count - employeesAddedCount
-                            : 0
-                    }
+                    //data = new
+                    //{
+                    //    ProjectId = existingProject.Id,
+                    //    ChangesApplied = changes.Count,
+                    //    EmployeesUpdated = data.ProjectEmployeesDto != null && data.ProjectEmployeesDto.Count > 0,
+                    //    EmployeesRemoved = employeesRemovedCount,
+                    //    EmployeesAdded = employeesAddedCount,
+                    //    DuplicatesRemoved = data.ProjectEmployeesDto != null
+                    //        ? data.ProjectEmployeesDto.Count - employeesAddedCount
+                    //        : 0
+                    //}
                 });
             }
             catch (Exception ex)
@@ -716,7 +718,7 @@ namespace TMS_API.Controllers
             }
         }
 
-        [HttpDelete("DeleteProjectById")]
+        [HttpPost("DeleteProjectById")]
         public async Task<IActionResult> DeleteProjectById(int projectId, string? userId)
         {
             if (projectId <= 0)
